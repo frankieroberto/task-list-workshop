@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What is your name?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ serviceName }}</h1>
+
+      <h1 class="govuk-heading-m">Section</h1>
+
+      {{ govukTaskList({
+        idPrefix: "company-details",
+        items: [
+          {
+            title: {
+              text: "Task 1"
+            },
+            href: "#",
+            status: {
+              text: "Completed"
+            }
+          },
+          {
+            title: {
+              text: "Task 2"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Task 3"
+            },
+            hint: {
+              text: "Hint text"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Task 4"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Task 5"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Send application" }) }}
+    </div>
+  </div>
+
+{% endblock %}
