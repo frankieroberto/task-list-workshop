@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Equality questions" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/disability" method="post">
+
+
+      {% set hintHtml %}
+      {% endset -%}
+
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      <p class="govuk-body">Before you apply, we’d like to ask some equality questions.</p>
+
+      <p class="govuk-body">These questions are optional. We use these answers to help assess the diversity of jugglers.</p>
+      <p class="govuk-body">Your answers will not affect your application.</p>
+
+
+      {{ govukRadios({
+        name: "equalitiesInfo",
+        fieldset: {
+          legend: {
+            text: "Do you want to answer the equality questions?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, answer the equality questions (takes 2 minutes)"
+          },
+          {
+            value: "no",
+            text: "No, skip the equality questions"
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Why we ask equality questions",
+        text: "[Consider adding an optional longer explanation of what you’re asking the questions and what you’ll do with the information]."
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

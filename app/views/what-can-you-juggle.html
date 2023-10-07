@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What can you juggle?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/licence-start" method="post">
+
+        {% set somethingElseHtml %}
+          {{ govukInput({
+            label: {
+              text: "What else can you juggle?"
+            },
+            name: "juggleOther",
+            id: "juggle-other"
+
+          }) }}
+        {% endset %}
+
+
+        {{ govukCheckboxes({
+          name: "whatCanYouJuggle",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Balls",
+              text: "Balls"
+            },
+            {
+              value: "Beanbags",
+              text: "Beanbags"
+            },
+            {
+              value: "Rings",
+              text: "Rings"
+            },
+            {
+              value: "Clubs",
+              text: "Clubs"
+            },
+            {
+              value: "Flaming clubs",
+              text: "Flaming clubs"
+            },
+            {
+              value: "chairs",
+              text: "Chairs"
+            },
+            {
+              value: "other",
+              text: "Something else",
+              conditional: {
+                html: somethingElseHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              text: "I can’t juggle yet",
+              value: "I can’t juggle yet",
+              behaviour: "exclusive"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

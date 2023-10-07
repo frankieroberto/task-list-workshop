@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What is your name?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/religion" method="post">
+
+        {{ govukRadios({
+          name: "marriageCivilPartnership",
+          fieldset: {
+            legend: {
+              text: "What is your legal marital or registered civil partnership status?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Never married and never registered in a civil partnership",
+              text: "Never married and never registered in a civil partnership"
+            },
+            {
+              value: "Married",
+              text: "Married"
+            },
+            {
+              value: "In a registered civil partnership",
+              text: "In a registered civil partnership"
+            },
+            {
+              value: "Separated, but still legally married",
+              text: "Separated, but still legally married"
+            },
+            {
+              value: "Separated, but still legally in a civil partnership",
+              text: "Separated, but still legally in a civil partnership"
+            },
+            {
+              value: "Divorced",
+              text: "Divorced"
+            },
+            {
+              value: "Formerly in a civil partnership which is now legally dissolved",
+              text: "Formerly in a civil partnership which is now legally dissolved"
+            },
+            {
+              value: "Widowed",
+              text: "Widowed"
+            },
+            {
+              value: "Surviving partner from a registered civil partnership",
+              text: "Surviving partner from a registered civil partnership"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Prefer not to say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

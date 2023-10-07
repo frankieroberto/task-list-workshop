@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "How would you like to pay?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/equality-questions" method="post">
+
+        {{ govukRadios({
+          name: "paymentFrequency",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "The full amount straight away",
+              text: "The full amount straight away"
+            },
+            {
+              value: "Annually",
+              text: "Annually"
+            },
+            {
+              value: "Every 6 months",
+              text: "Every 6 months"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

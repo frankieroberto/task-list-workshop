@@ -1,0 +1,80 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Which regions would you like the licence to be valid for?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/payment-method" method="post">
+
+        {{ govukCheckboxes({
+          name: "licenceRegions",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "North West",
+              text: "North West"
+            },
+            {
+              value: "North East",
+              text: "North East"
+            },
+            {
+              value: "Yorkshire and the Humber",
+              text: "Yorkshire and the Humber"
+            },
+            {
+              value: "West Midlands",
+              text: "West Midlands"
+            },
+            {
+              value: "East Midlands",
+              text: "East Midlands"
+            },
+            {
+              value: "South West",
+              text: "South West"
+            },
+            {
+              value: "South East",
+              text: "South East"
+            },
+            {
+              value: "London",
+              text: "London"
+            },
+            {
+              value: "East of England",
+              text: "East of England"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

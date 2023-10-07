@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What is your name?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/sexual-orientation" method="post">
+
+        {% set religionHtml %}
+          {{ govukInput({
+            id: "other-description",
+            name: "otherDescription",
+            type: "text",
+            classes: "govuk-!-width-one-half",
+            label: {
+              text: "What is your religion? (optional)"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          name: "religion",
+          fieldset: {
+            legend: {
+              text: "What is your religion?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "No religion",
+              text: "No religion"
+            },
+            {
+              value: "Christian",
+              text: "Christian",
+              hint: {
+                text: "Including Church of England, Catholic, Protestant and all other Christian denominations."
+              }
+            },
+            {
+              value: "Buddhist",
+              text: "Buddhist"
+            },
+            {
+              value: "Hindu",
+              text: "Hindu"
+            },
+            {
+              value: "Jewish",
+              text: "Jewish"
+            },
+            {
+              value: "Muslim",
+              text: "Muslim"
+            },
+            {
+              value: "Sikh",
+              text: "Sikh"
+            },
+            {
+              value: "Another religion",
+              text: "Any other religion",
+              conditional: {
+                html: religionHtml
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Prefer not to say",
+              text: "Prefer not to say"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

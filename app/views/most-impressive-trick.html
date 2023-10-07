@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What is your most impressive juggling trick?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/what-can-you-juggle" method="post">
+
+        {{ govukCharacterCount({
+          name: "mostImpressiveTrick",
+          id: "most-impressive-trick",
+          label: {
+            text: pageName,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          maxwords: 400,
+          rows: 10
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

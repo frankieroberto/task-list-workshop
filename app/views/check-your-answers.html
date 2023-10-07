@@ -1,0 +1,366 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers before sending your application" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data.name
+            },
+            actions: {
+              items: [
+                {
+                  href: "/name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: data.email
+            },
+            actions: {
+              items: [
+                {
+                  href: "/email",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              text: data.phone
+            },
+            actions: {
+              items: [
+                {
+                  href: "/phone",
+                  text: "Change",
+                  visuallyHiddenText: "customer reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: data.addressLine1 + "<br>" + data.addressLine1 + "<br>" + data.addressTown + "<br>" + data.addressCounty + "<br>" + data.addressPostcode
+            },
+            actions: {
+              items: [
+                {
+                  href: "/address",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              html: (data | isoDateFromDateInput("dob") | govukDate)
+            },
+            actions: {
+              items: [
+                {
+                  href: "/dob",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of balls you can juggle"
+            },
+            value: {
+              html: data.howManyBalls
+            },
+            actions: {
+              items: [
+                {
+                  href: "/how-many-balls",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Most impressive trick"
+            },
+            value: {
+              html: (data.mostImpressiveTrick | nl2br)
+            },
+            actions: {
+              items: [
+                {
+                  href: "/most-impressive-trick",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Things juggled"
+            },
+            value: {
+              html: (data.whatCanYouJuggle | join("<br>"))
+            },
+            actions: {
+              items: [
+                {
+                  href: "/dob",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence start date"
+            },
+            value: {
+              html: (data | isoDateFromDateInput("licenceStart") | govukDate)
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-start",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Previous licence"
+            },
+            value: {
+              html: data.previousLicence
+            },
+            actions: {
+              items: [
+                {
+                  href: "/previous-licence",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence regions"
+            },
+            value: {
+              html: (data.licenceRegions | join("<br>"))
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-region",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Payment method"
+            },
+            value: {
+              html: data.paymentMethod
+            },
+            actions: {
+              items: [
+                {
+                  href: "/payment-method",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence length"
+            },
+            value: {
+              html: data.licenceLength
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-length",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Payment frequency"
+            },
+            value: {
+              html: data.paymentFrequency
+            },
+            actions: {
+              items: [
+                {
+                  href: "/payment-frequency",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Health conditions or illnesses"
+            },
+            value: {
+              html: data.disability
+            },
+            actions: {
+              items: [
+                {
+                  href: "/disability",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnicity"
+            },
+            value: {
+              html: data.ethnicityDetail
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ethnic-group",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Marital status"
+            },
+            value: {
+              html: data.marriageCivilPartnership
+            },
+            actions: {
+              items: [
+                {
+                  href: "/marital-status",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Religion"
+            },
+            value: {
+              html: data.religion
+            },
+            actions: {
+              items: [
+                {
+                  href: "/religion",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sexual orientation"
+            },
+            value: {
+              html: data.sexualOrientation
+            },
+            actions: {
+              items: [
+                {
+                  href: "/sex-and-gender",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      <form action="/form-handler" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        {{ govukButton({
+          text: "Accept and send"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

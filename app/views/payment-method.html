@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What payment method would you like to use?" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/licence-length" method="post">
+
+        {{ govukRadios({
+          name: "paymentMethod",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Debit or credit card",
+              text: "Debit or credit card"
+            },
+            {
+              value: "Direct Debit",
+              text: "Direct Debit"
+            },
+            {
+              value: "Bank transfer",
+              text: "Bank transfer"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
