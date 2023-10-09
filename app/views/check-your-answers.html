@@ -92,7 +92,7 @@
               text: "Date of birth"
             },
             value: {
-              html: (data | isoDateFromDateInput("dob") | govukDate)
+              html: (data.dob | isoDateFromDateInput | govukDate)
             },
             actions: {
               items: [
@@ -148,7 +148,7 @@
             actions: {
               items: [
                 {
-                  href: "/dob",
+                  href: "/what-can-you-juggle",
                   text: "Change",
                   visuallyHiddenText: "contact details"
                 }
@@ -160,7 +160,7 @@
               text: "Licence start date"
             },
             value: {
-              html: (data | isoDateFromDateInput("licenceStart") | govukDate)
+              html: (data.licenceStart | isoDateFromDateInput | govukDate)
             },
             actions: {
               items: [

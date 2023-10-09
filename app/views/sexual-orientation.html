@@ -19,7 +19,8 @@
         {% set sexualOrientationHtml %}
           {{ govukInput({
             id: "other-description",
-            name: "otherDescription",
+            name: "otherSexualOrientation",
+            value: data.otherSexualOrientation,
             type: "text",
             classes: "govuk-!-width-one-half",
             label: {
@@ -30,6 +31,7 @@
 
         {{ govukRadios({
           name: "sexualOrientation",
+          value: data.sexualOrientation,
           fieldset: {
             legend: {
               text: pageName,

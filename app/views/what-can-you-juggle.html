@@ -22,7 +22,8 @@
               text: "What else can you juggle?"
             },
             name: "juggleOther",
-            id: "juggle-other"
+            id: "juggle-other",
+            value: data.juggleOther
 
           }) }}
         {% endset %}
@@ -30,6 +31,7 @@
 
         {{ govukCheckboxes({
           name: "whatCanYouJuggle",
+          values: data.whatCanYouJuggle,
           fieldset: {
             legend: {
               text: pageName,
