@@ -16,6 +16,19 @@
 
       <form class="form" action="/licence-region" method="post">
 
+      {% set previousLicenceHtml %}
+        {{ govukInput({
+          label: {
+            text: "Previous licence number"
+          },
+          classes: "govuk-input--width-20 govuk-input--extra-letter-spacing",
+          id: "previousLicence",
+          name: "previousLicenceNumber",
+          spellcheck: false,
+          value: data.previousLicenceNumber
+        }) }}
+      {% endset %}
+
       {{ govukRadios({
         name: "previousLicence",
         value: data.previousLicence,
@@ -29,7 +42,10 @@
         items: [
           {
             value: "Yes",
-            text: "Yes"
+            text: "Yes",
+            conditional: {
+              html: previousLicenceHtml
+            }
           },
           {
             value: "No",

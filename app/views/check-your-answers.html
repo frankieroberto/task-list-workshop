@@ -12,7 +12,7 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
       <h1 class="govuk-heading-l">{{ pageName }}</h1>
 
@@ -177,7 +177,7 @@
               text: "Previous licence"
             },
             value: {
-              html: data.previousLicence
+              html: ("None" if data.previousLicence == "No" else "Number " + data.previousLicenceNumber)
             },
             actions: {
               items: [
