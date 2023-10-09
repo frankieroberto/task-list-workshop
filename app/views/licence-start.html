@@ -18,7 +18,6 @@
 
         {{ govukDateInput({
           id: "licenceStart",
-          namePrefix: "licenceStart",
           fieldset: {
             legend: {
               text: pageName,
@@ -28,7 +27,27 @@
           },
           hint: {
             text: "For example, 27 3 2024"
-          }
+          },
+          items: [
+            {
+              name: "licenceStart[day]",
+              label: "Day",
+              value: data.licenceStart.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "licenceStart[month]",
+              label: "Month",
+              value: data.licenceStart.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "licenceStart[year]",
+              label: "Year",
+              value: data.licenceStart.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
         }) }}
 
 

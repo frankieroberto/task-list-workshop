@@ -20,6 +20,7 @@
           {{ govukInput({
             id: "other-description",
             name: "otherDescription",
+            value: data.otherDescription,
             type: "text",
             classes: "govuk-!-width-one-half",
             label: {
@@ -30,6 +31,7 @@
 
         {{ govukRadios({
           name: "religion",
+          value: data.religion,
           fieldset: {
             legend: {
               text: "What is your religion?",
