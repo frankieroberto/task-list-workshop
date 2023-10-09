@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Juggling skills" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Number of balls you can juggle"
+            },
+            value: {
+              html: data.howManyBalls
+            },
+            actions: {
+              items: [
+                {
+                  href: "/how-many-balls",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Most impressive trick"
+            },
+            value: {
+              html: (data.mostImpressiveTrick | nl2br)
+            },
+            actions: {
+              items: [
+                {
+                  href: "/most-impressive-trick",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Things juggled"
+            },
+            value: {
+              html: (data.whatCanYouJuggle | join("<br>")) if data.whatCanYouJuggle
+            },
+            actions: {
+              items: [
+                {
+                  href: "/what-can-you-juggle",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="/task-list" method="post">
+        {{ govukRadios({
+          name: "completed[jugglingSkills]",
+          value: data.completed.jugglingSkills,
+          fieldset: {
+            legend: {
+              text: "Have you completed this section?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I’ve completed this section"
+            },
+            {
+              value: "no",
+              text: "No, I’ll come back to it later"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

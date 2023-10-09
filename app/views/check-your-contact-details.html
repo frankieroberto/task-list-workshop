@@ -1,0 +1,109 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Contact details" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: data.email
+            },
+            actions: {
+              items: [
+                {
+                  href: "/email",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              text: data.phone
+            },
+            actions: {
+              items: [
+                {
+                  href: "/phone",
+                  text: "Change",
+                  visuallyHiddenText: "customer reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: (data.addressLine1 + "<br>" + data.addressLine1 + "<br>" + data.addressTown + "<br>" + data.addressCounty + "<br>" + data.addressPostcode) if data.addressLine1
+            },
+            actions: {
+              items: [
+                {
+                  href: "/address",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="/task-list" method="post">
+        {{ govukRadios({
+          name: "completed[contactDetails]",
+          value: data.completed.contactDetails,
+          fieldset: {
+            legend: {
+              text: "Have you completed this section?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I’ve completed this section"
+            },
+            {
+              value: "no",
+              text: "No, I’ll come back to it later"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

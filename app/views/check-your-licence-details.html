@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Licence details" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Previous licence"
+            },
+            value: {
+              html: ("Number " + data.previousLicenceNumber if data.previousLicence == "Yes" else "None") if data.previousLicence
+            },
+            actions: {
+              items: [
+                {
+                  href: "/previous-licence",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence start date"
+            },
+            value: {
+              html: (data.licenceStart | isoDateFromDateInput | govukDate) if data.licenceStart
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-start",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence regions"
+            },
+            value: {
+              html: (data.licenceRegions | join("<br>")) if data.licenceRegions
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-region",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence length"
+            },
+            value: {
+              html: data.licenceLength
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-length",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="/task-list" method="post">
+        {{ govukRadios({
+          name: "completed[licenceDetails]",
+          value: data.completed.licenceDetails,
+          fieldset: {
+            legend: {
+              text: "Have you completed this section?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I’ve completed this section"
+            },
+            {
+              value: "no",
+              text: "No, I’ll come back to it later"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

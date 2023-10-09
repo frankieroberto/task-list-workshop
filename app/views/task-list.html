@@ -9,75 +9,79 @@
 
       <h1 class="govuk-heading-l">{{ serviceName }}</h1>
 
-      <h1 class="govuk-heading-m">Section</h1>
+      {% set completedStatus = {
+        text: "Completed"
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Incomplete",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+
+      <h2 class="govuk-heading-m">Your application</h2>
 
       {{ govukTaskList({
         idPrefix: "company-details",
         items: [
           {
             title: {
-              text: "Task 1"
+              text: "Personal details"
             },
-            href: "#",
-            status: {
-              text: "Completed"
-            }
+            href: ("/check-your-personal-details" if data.completed.personalDetails == "yes" else "/name"),
+            status: (completedStatus if data.completed.personalDetails == "yes" else incompleteStatus)
           },
           {
             title: {
-              text: "Task 2"
+              text: "Contact details"
             },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
+            href: ("/check-your-contact-details" if data.completed.contactDetails == "yes" else "/email"),
+            status: (completedStatus if data.completed.contactDetails == "yes" else incompleteStatus)
           },
           {
             title: {
-              text: "Task 3"
+              text: "Juggling skills"
             },
-            hint: {
-              text: "Hint text"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
+            href: ("/check-your-juggling-skills" if data.completed.jugglingSkills == "yes" else "/how-many-balls"),
+            status: (completedStatus if data.completed.jugglingSkills == "yes" else incompleteStatus)
           },
           {
             title: {
-              text: "Task 4"
+              text: "Licence details"
             },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
+            href: ("/check-your-licence-details" if data.completed.licenceDetails == "yes" else "/previous-licence"),
+            status: (completedStatus if data.completed.licenceDetails == "yes" else incompleteStatus)
           },
           {
             title: {
-              text: "Task 5"
+              text: "Payment information"
             },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
+            href: ("/check-your-payment-information" if data.completed.paymentInformation == "yes" else "/payment-method"),
+            status: (completedStatus if data.completed.paymentInformation == "yes" else incompleteStatus)
           }
         ]
       }) }}
 
-      {{ govukButton({ text: "Send application" }) }}
+      <h2 class="govuk-heading-m">Equality and diversity</h2>
+
+      <p class="govuk-body">These questions will not affect your application.</p>
+
+      {{ govukTaskList({
+        idPrefix: "company-details",
+        items: [
+          {
+            title: {
+              text: "Equality and diversity questions"
+            },
+            href: ("/check-your-equality-diversity" if data.completed.equalityQuestions == "yes" else "/equality-questions"),
+            status: (completedStatus if data.completed.equalityQuestions == "yes" else incompleteStatus)
+          }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Review and send application", href: "/check-your-answers" }) }}
     </div>
   </div>
 

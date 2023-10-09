@@ -16,349 +16,445 @@
 
       <h1 class="govuk-heading-l">{{ pageName }}</h1>
 
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-          {
-            key: {
-              text: "Name"
-            },
-            value: {
-              text: data.name
-            },
-            actions: {
-              items: [
-                {
-                  href: "/name",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: data.email
-            },
-            actions: {
-              items: [
-                {
-                  href: "/email",
-                  text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Phone number"
-            },
-            value: {
-              text: data.phone
-            },
-            actions: {
-              items: [
-                {
-                  href: "/phone",
-                  text: "Change",
-                  visuallyHiddenText: "customer reference"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Address"
-            },
-            value: {
-              html: (data.addressLine1 + "<br>" + data.addressLine1 + "<br>" + data.addressTown + "<br>" + data.addressCounty + "<br>" + data.addressPostcode) if data.addressLine1
-            },
-            actions: {
-              items: [
-                {
-                  href: "/address",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Date of birth"
-            },
-            value: {
-              html: (data.dob | isoDateFromDateInput | govukDate) if data.dob
-            },
-            actions: {
-              items: [
-                {
-                  href: "/dob",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of balls you can juggle"
-            },
-            value: {
-              html: data.howManyBalls
-            },
-            actions: {
-              items: [
-                {
-                  href: "/how-many-balls",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Most impressive trick"
-            },
-            value: {
-              html: (data.mostImpressiveTrick | nl2br)
-            },
-            actions: {
-              items: [
-                {
-                  href: "/most-impressive-trick",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Things juggled"
-            },
-            value: {
-              html: (data.whatCanYouJuggle | join("<br>")) if data.whatCanYouJuggle
-            },
-            actions: {
-              items: [
-                {
-                  href: "/what-can-you-juggle",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Licence start date"
-            },
-            value: {
-              html: (data.licenceStart | isoDateFromDateInput | govukDate) if data.licenceStart
-            },
-            actions: {
-              items: [
-                {
-                  href: "/licence-start",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Previous licence"
-            },
-            value: {
-              html: ("Number " + data.previousLicenceNumber if data.previousLicence == "Yes" else "None") if data.previousLicence
-            },
-            actions: {
-              items: [
-                {
-                  href: "/previous-licence",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Licence regions"
-            },
-            value: {
-              html: (data.licenceRegions | join("<br>")) if data.licenceRegions
-            },
-            actions: {
-              items: [
-                {
-                  href: "/licence-region",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Payment method"
-            },
-            value: {
-              html: data.paymentMethod
-            },
-            actions: {
-              items: [
-                {
-                  href: "/payment-method",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Licence length"
-            },
-            value: {
-              html: data.licenceLength
-            },
-            actions: {
-              items: [
-                {
-                  href: "/licence-length",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Payment frequency"
-            },
-            value: {
-              html: data.paymentFrequency
-            },
-            actions: {
-              items: [
-                {
-                  href: "/payment-frequency",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Health conditions or illnesses"
-            },
-            value: {
-              html: data.disability
-            },
-            actions: {
-              items: [
-                {
-                  href: "/disability",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Ethnicity"
-            },
-            value: {
-              html: data.ethnicityDetail
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ethnic-group",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Marital status"
-            },
-            value: {
-              html: data.marriageCivilPartnership
-            },
-            actions: {
-              items: [
-                {
-                  href: "/marital-status",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Religion"
-            },
-            value: {
-              html: data.religion
-            },
-            actions: {
-              items: [
-                {
-                  href: "/religion",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Sexual orientation"
-            },
-            value: {
-              html: data.sexualOrientation
-            },
-            actions: {
-              items: [
-                {
-                  href: "/sex-and-gender",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+      <h2 class="govuk-heading-m">Personal details</h2>
 
+      {% if data.completed.personalDetails == "yes" %}
 
-      <h2 class="govuk-heading-m">Now send your application</h2>
-
-      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-
-      <form action="/submitted" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
-        {{ govukButton({
-          text: "Accept and send"
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Name"
+              },
+              value: {
+                text: data.name
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/name",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Date of birth"
+              },
+              value: {
+                html: (data.dob | isoDateFromDateInput | govukDate) if data.dob
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/dob",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            }
+          ]
         }) }}
+      {% else %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <p class="govuk-error-message">You have not yet completed this section</p>
+          <p class="govuk-body"><a href="/name" class="govuk-link">Complete personal details</a></p>
+        </div>
+      {% endif %}
 
-      </form>
+      <h2 class="govuk-heading-m">Contact details</h2>
+
+      {% if data.completed.contactDetails == "yes" %}
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Email address"
+              },
+              value: {
+                text: data.email
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/email",
+                    text: "Change",
+                    visuallyHiddenText: "date of birth"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Phone number"
+              },
+              value: {
+                text: data.phone
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/phone",
+                    text: "Change",
+                    visuallyHiddenText: "customer reference"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Address"
+              },
+              value: {
+                html: (data.addressLine1 + "<br>" + data.addressLine1 + "<br>" + data.addressTown + "<br>" + data.addressCounty + "<br>" + data.addressPostcode) if data.addressLine1
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/address",
+                    text: "Change",
+                    visuallyHiddenText: "address"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      {% else %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <p class="govuk-error-message">You have not yet completed this section</p>
+          <p class="govuk-body"><a href="/email" class="govuk-link">Complete contact details</a></p>
+        </div>
+
+      {% endif %}
+
+      <h2 class="govuk-heading-m">Juggling skills</h2>
+
+      {% if data.completed.jugglingSKills == "yes" %}
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Number of balls you can juggle"
+              },
+              value: {
+                html: data.howManyBalls
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/how-many-balls",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Most impressive trick"
+              },
+              value: {
+                html: (data.mostImpressiveTrick | nl2br)
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/most-impressive-trick",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Things juggled"
+              },
+              value: {
+                html: (data.whatCanYouJuggle | join("<br>")) if data.whatCanYouJuggle
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/what-can-you-juggle",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      {% else %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <p class="govuk-error-message">You have not yet completed this section</p>
+          <p class="govuk-body"><a href="/how-many-balls" class="govuk-link">Complete juggling skills</a></p>
+        </div>
+
+      {% endif %}
+
+      <h2 class="govuk-heading-m">Licence details</h2>
+
+
+      {% if data.completed.licenceDetails == "yes" %}
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Previous licence"
+              },
+              value: {
+                html: ("Number " + data.previousLicenceNumber if data.previousLicence == "yes" else "None") if data.previousLicence
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/previous-licence",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Licence start date"
+              },
+              value: {
+                html: (data.licenceStart | isoDateFromDateInput | govukDate) if data.licenceStart
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/licence-start",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Licence regions"
+              },
+              value: {
+                html: (data.licenceRegions | join("<br>")) if data.licenceRegions
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/licence-region",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Licence length"
+              },
+              value: {
+                html: data.licenceLength
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/licence-length",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      {% else %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <p class="govuk-error-message">You have not yet completed this section</p>
+          <p class="govuk-body"><a href="/previous-licence" class="govuk-link">Complete licence details</a></p>
+        </div>
+
+      {% endif %}
+
+      <h2 class="govuk-heading-m">Payment information</h2>
+
+      {% if data.completed.paymentInformation == "yes" %}
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Payment method"
+              },
+              value: {
+                html: data.paymentMethod
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/payment-method",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Payment frequency"
+              },
+              value: {
+                html: data.paymentFrequency
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/payment-frequency",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      {% else %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <p class="govuk-error-message">You have not yet completed this section</p>
+          <p class="govuk-body"><a href="/payment-method" class="govuk-link">Complete payment method</a></p>
+        </div>
+      {% endif %}
+
+
+      <h2 class="govuk-heading-m">Equality and diversity</h2>
+      <p class="govuk-body">These questions will not affect your application.</p>
+
+      {% if data.completed.equalityQuestions == "yes" %}
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-9",
+          rows: [
+            {
+              key: {
+                text: "Health conditions or illnesses"
+              },
+              value: {
+                html: data.disability
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/disability",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Ethnicity"
+              },
+              value: {
+                html: data.ethnicityDetail
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ethnic-group",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Marital status"
+              },
+              value: {
+                html: data.marriageCivilPartnership
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/marital-status",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Religion"
+              },
+              value: {
+                html: data.religion
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/religion",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Sexual orientation"
+              },
+              value: {
+                html: data.sexualOrientation
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/sex-and-gender",
+                    text: "Change",
+                    visuallyHiddenText: "contact details"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      {% else %}
+        <div class="govuk-form-group govuk-form-group--error">
+          <p class="govuk-error-message">You have not yet completed this section</p>
+          <p class="govuk-body"><a href="/equality-questions" class="govuk-link">Complete equality questions</a></p>
+        </div>
+      {% endif %}
+
+      {% if data.completed.personalDetails == "yes" and data.completed.contactDetails == "yes" and data.completed.jugglingSkills == "yes" and data.completed.licenceDetails == "yes" and data.completed.paymentInformation == "yes" and data.completed.equalityQuestions == "yes" %}
+        <h2 class="govuk-heading-m">Now send your application</h2>
+
+        <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+        <form action="/submitted" method="post" novalidate>
+
+          <input type="hidden" name="answers-checked" value="true">
+
+          {{ govukButton({
+            text: "Accept and send"
+          }) }}
+
+        </form>
+      {% endif %}
 
     </div>
   </div>

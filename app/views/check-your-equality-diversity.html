@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Equality and diversity" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{ pageName }}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Health conditions or illnesses"
+            },
+            value: {
+              html: data.disability
+            },
+            actions: {
+              items: [
+                {
+                  href: "/disability",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnicity"
+            },
+            value: {
+              html: data.ethnicityDetail
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ethnic-group",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Marital status"
+            },
+            value: {
+              html: data.marriageCivilPartnership
+            },
+            actions: {
+              items: [
+                {
+                  href: "/marital-status",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Religion"
+            },
+            value: {
+              html: data.religion
+            },
+            actions: {
+              items: [
+                {
+                  href: "/religion",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sexual orientation"
+            },
+            value: {
+              html: data.sexualOrientation
+            },
+            actions: {
+              items: [
+                {
+                  href: "/sex-and-gender",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <form action="/task-list" method="post">
+        {{ govukRadios({
+          name: "completed[equalityQuestions]",
+          value: data.completed.equalityQuestions,
+          fieldset: {
+            legend: {
+              text: "Have you completed this section?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, I’ve completed this section"
+            },
+            {
+              value: "no",
+              text: "No, I’ll come back to it later"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}
