@@ -177,7 +177,7 @@
               text: "Previous licence"
             },
             value: {
-              html: ("None" if data.previousLicence == "No" else "Number " + data.previousLicenceNumber)
+              html: ("Number " + data.previousLicenceNumber if data.previousLicence == "Yes" else "None") if data.previousLicence
             },
             actions: {
               items: [
