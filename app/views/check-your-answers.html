@@ -19,44 +19,18 @@
 
       {% if data.completed.personalDetails == "yes" %}
 
-        {{ govukSummaryList({
-          classes: "govuk-!-margin-bottom-9",
-          rows: [
-            {
-              key: {
-                text: "Name"
-              },
-              value: {
-                text: data.name
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/name",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Date of birth"
-              },
-              value: {
-                html: (data.dob | isoDateFromDateInput | govukDate) if data.dob
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/dob",
-                    text: "Change",
-                    visuallyHiddenText: "contact details"
-                  }
-                ]
-              }
-            }
-          ]
+      <h2 class="govuk-heading-m">Now send your application</h2>
+
+      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+      <form action="/form-handler" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        {{ govukButton({
+          text: "Accept and send",
+          href: "/completed"
+
         }) }}
       {% else %}
         <div class="govuk-form-group govuk-form-group--error">
